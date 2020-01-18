@@ -5,6 +5,7 @@ use App\Post;
 use App\Tag;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class PostsTableSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class PostsTableSeeder extends Seeder
 
         $author2 = User::create([
             'name' => 'Sikunu',
-            'email' => 'sikunu@gmail.com',
+            'email' => 'sikunubenjamin@gmail.com',
             'password' => Hash::make('password')
         ]);
 
@@ -51,9 +52,10 @@ class PostsTableSeeder extends Seeder
             'contenu' => 'Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat eleifend option nihil. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius parum claram.',
             'category_id' => $category1->id,
             'image' => 'posts/1.jpg',
+            'user_id' => $author1->id
         ]);
 
-        $post2 = Post::create([
+        $post2 = $author2->posts()->create([
             'title' => 'Best practices for minimalist design with example',
             'description' => 'adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta.',
             'contenu' => 'Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat eleifend option nihil. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius parum claram.',
@@ -61,7 +63,7 @@ class PostsTableSeeder extends Seeder
             'image' => 'posts/2.jpg'
         ]);
 
-        $post3 = Post::create([
+        $post3 = $author3->posts()->create([
             'title' => 'Top 5 brilliant content marketing strategies',
             'description' => 'adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta.',
             'contenu' => 'Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat eleifend option nihil. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius parum claram.',
@@ -69,7 +71,7 @@ class PostsTableSeeder extends Seeder
             'image' => 'posts/3.jpg'
         ]);
 
-        $post4 = Post::create([
+        $post4 = $author1->posts()->create([
             'title' => 'Congratulate and thank to Maryam for joining our team',
             'description' => 'adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta.',
             'contenu' => 'Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat eleifend option nihil. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius parum claram.',
