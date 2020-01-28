@@ -1,73 +1,103 @@
 @extends('layouts.blog')
 
 @section('title')
-    Dieu a parle
+    Dieu a parle || Your are welcome
 @endsection
 
 @section('header')
-    <!-- Header -->
-    <header class="header text-center text-white" style="background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);">
-        <div class="container">
+    <header class="header text-white h-fullscreen overflow-hidden" style="background-image: linear-gradient(-45deg, #667eea 0%, #764ba2 100%);">
+        <canvas class="constellation" data-radius="0"></canvas>
+        <div class="container position-static">
+            <div class="row align-items-center h-100">
 
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-
-                    <h1>Latest Blog Posts</h1>
-                    <p class="lead-2 opacity-90 mt-6">Read and get updated on how we progress</p>
-
+                <div class="col-lg-7">
+                    <h1 class="display-4 fw-500">Let be
+                        <span class="fw-400 pl-2" data-typing="Blessing, God Change you, God Transform you, God Speak for you, Save" data-type-speed="80">
+                        </span>
+                    </h1>
+                    <p class="lead mt-5 mb-7 mb-md-9 w-80">
+                        <strong>@lang('text-front.god')</strong>
+                        {{ __('text-front.slogan') }}
+                    </p>
+                <div class="col-lg-5 d-none d-lg-block">
                 </div>
+
+            </div>
+
+            <div class="d-none d-lg-block sample-blocks">
+                <a href="block/cover.html#block-2" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-1.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="0" data-aos-offset="0">
+                </a>
+
+                <a href="block/team.html#block-6" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-2.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="200" data-aos-offset="0">
+                </a>
+
+                <a href="block/cover.html#block-5" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-3.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="400" data-aos-offset="0">
+                </a>
+
+                <a href="block/blog.html#block-1" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-4.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="600" data-aos-offset="0">
+                </a>
+
+                <a href="block/feature.html#block-8" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-5.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="800" data-aos-offset="0">
+                </a>
+
+                <a href="block/feature.html#block-13" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-6.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="1000" data-aos-offset="0">
+                </a>
+
+                <a href="block/shop.html#block-4" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-7.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="1200" data-aos-offset="0">
+                </a>
+
+                <a href="block/feature-text.html#block-3" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-8.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="1400" data-aos-offset="0">
+                </a>
+
+                <a href="block/pricing.html#block-6" target="_blank">
+                    <img class="shadow-6" src="{{ asset('img/previews/flyer-9.jpg') }}" alt="..." data-aos="fade-up" data-aos-delay="1700" data-aos-offset="0">
+                </a>
             </div>
 
         </div>
-    </header><!-- /.header -->
+    </header>
 @endsection
 
 @section('content')
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="section bg-gray">
-            <div class="container">
-                <div class="row">
-
-
-                    <div class="col-md-8 col-xl-9">
-                        <div class="row gap-y">
-
-                            @forelse($posts as $post)
-                                <div class="col-md-6">
-                                    <div class="card border hover-shadow-6 mb-6 d-block">
-                                        <a href="{{ route('blog.show', $post->id) }}">
-                                            <img class="card-img-top" style="width: 396px; height: 260px" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
-                                        </a>
-                                        <div class="p-6 text-center">
-                                            <p>
-                                                <a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">
-                                                    {{ $post->category->name }}
-                                                </a>
-                                            </p>
-                                            <h5 class="mb-0">
-                                                <a class="text-dark" href="{{ route('blog.show', $post->id) }}">
-                                                    {{ $post->title }}
-                                                </a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="container">
-                                    <h2 class="text-center">No results find for search : <strong>{{ request()->query('search') }}</strong></h2>
-                                </div>
-                            @endforelse
-
-                        </div>
-                        {{ $posts->appends(['search' => request()->query('search')])->links() }}
-                    </div>
-
-
-                    @include('partials.sidebar')
-
+    <section class="section bg-gray overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mx-auto text-center mt-8 mt-md-0">
+                    <img src="{{ asset('img/linda/linda.png') }}" style="width: 250px; height: 500px" alt="mama-linda" data-aos="fade-up">
                 </div>
+
+                <div class="col-md-6 align-self-center text-center text-md-left">
+                    <h2>@lang('text-front.slogan_linda')</h2><br>
+                    <p>@lang('text-front.text-linda')</p>
+                    <br>
+                    <a class="btn btn-lg btn-round btn-primary shadow-3" href="{{ route('blog') }}">@lang('text-front.get-started')</a>
+                </div>
+
             </div>
         </div>
-    </main>
+    </section>
+
+
+
+    <!-- Offcanvas - Search -->
+    <div id="offcanvas-search" class="offcanvas text-white" data-animation="fade" style="background-color: rgba(110,205,255,0.9)">
+        <button type="button" class="close" data-dismiss="offcanvas" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row align-items-center text-center h-90">
+            <div class="col-10 col-md-6 mx-auto">
+                <form class="input-transparent">
+                    <input class="form-control form-control-lg border-0 lead-5" type="text" name="search" placeholder="Enter your keywords here">
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

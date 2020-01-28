@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Users\UpdateProfileRequest;
@@ -19,7 +20,12 @@ class UsersController extends Controller
 
     public function edit()
     {
-        return view('users.edit')->with('user', auth()->user());
+
+        /*->with('user', auth()->user())*/
+        return view('users.edit')
+            ->with('users', User::all())
+            ->with('posts', Post::all())
+            ->with('user', auth()->user());
     }
 
     public function update(UpdateProfileRequest $request)

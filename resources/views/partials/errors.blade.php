@@ -1,9 +1,11 @@
 @if($errors->any())
-    <div class="alert alert-danger">
-        <ul class="list-group">
-            @foreach($errors->all() as $error)
-                <li class="list-group-item">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    @foreach($errors->all() as $error)
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ $error }}<i class="fa fa-warning float-right"></i>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endforeach
 @endif
+

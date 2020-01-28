@@ -61,9 +61,9 @@
         <hr>
 
         <h6 class="sidebar-title">About</h6>
-        <p class="small-3">TheSaaS is a responsive, professional, and multipurpose SaaS, Software,
-            Startup and WebApp landing template powered by Bootstrap 4. TheSaaS is a powerful and
-            super flexible tool for any kind of landing pages.</p>
+        <p class="small-3">Être l'homme le plus riche du cimetière ne m'intéresse pas...
+            Aller au lit en se disant qu'on a fait quelque chose de magnifique... C'est ce qui m'importe.</p>
+        <p class="small-3">Innover, c'est savoir abandonner des milliers de bonnes idées.</p>
 
 
     </div>

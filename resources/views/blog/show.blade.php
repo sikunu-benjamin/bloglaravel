@@ -43,14 +43,21 @@
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         {!! $post->contenu !!}
+                        <div class="social social-hover-bg-brand text-center float-right">
+                            {!! Share::currentPage()->facebook() !!}
+                            {!! Share::currentPage()->twitter() !!}
+                            {!! Share::currentPage()->linkedin() !!}
+                            {!! Share::currentPage()->whatsapp() !!}
+                        </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="gap-xy-2 mt-6">
                             @foreach($post->tags as $tag)
-                                <a class="badge badge-pill badge-secondary" href="#">{{ $tag->name }}</a>
+                                <a class="badge badge-pill badge-secondary" href="{{ route('blog.tag', $tag->id) }}">
+                                    {{ $tag->name }}
+                                </a>
                             @endforeach
                         </div>
 
@@ -75,76 +82,12 @@
 
                         <div class="media-list">
 
-                            <div class="media">
-                                <img class="avatar avatar-sm mr-4" src="{{ Gravatar::src(asset($post->user->email)) }}" alt="...">
-
-                                <div class="media-body">
-                                    <div class="small-1">
-                                        <strong>{{ $post->user->name  }}</strong>
-                                        <time class="ml-4 opacity-70 small-3" datetime="2018-07-14 20:00">24 min ago
-                                        </time>
-                                    </div>
-                                    <p class="small-2 mb-0">Thoughts his tend and both it fully to would the their
-                                        reached drew project the be I hardly just tried constructing I his wonder, that
-                                        his software and need out where didn't the counter productive.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="media">
-                                <img class="avatar avatar-sm mr-4" src="{{ Gravatar::src(asset('hosseinshams@gmail.com')) }}" alt="...">
-
-                                <div class="media-body">
-                                    <div class="small-1">
-                                        <strong>Hossein Shams</strong>
-                                        <time class="ml-4 opacity-70 small-3" datetime="2018-07-14 20:00">6 hours ago
-                                        </time>
-                                    </div>
-                                    <p class="small-2 mb-0">Was my suppliers, has concept how few everything task
-                                        music.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="media">
-                                <img class="avatar avatar-sm mr-4" src="{{ Gravatar::src(asset('sarahhanks@gmail.com')) }}" alt="...">
-
-                                <div class="media-body">
-                                    <div class="small-1">
-                                        <strong>Sarah Hanks</strong>
-                                        <time class="ml-4 opacity-70 small-3" datetime="2018-07-14 20:00">Yesterday
-                                        </time>
-                                    </div>
-                                    <p class="small-2 mb-0">Been me have the no a themselves, agency, it that if
-                                        conduct, posts, another who to assistant done rattling forth there the customary
-                                        imitation.</p>
-                                </div>
-                            </div>
+                            @comments(['model' => $post])
 
                         </div>
 
 
                         <hr>
-
-
-                        <form action="#" method="POST">
-
-                            <div class="row">
-                                <div class="form-group col-12 col-md-6">
-                                    <input class="form-control" type="text" placeholder="Name">
-                                </div>
-
-                                <div class="form-group col-12 col-md-6">
-                                    <input class="form-control" type="text" placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Comment" rows="4"></textarea>
-                            </div>
-
-                            <button class="btn btn-primary btn-block" type="submit">Submit your comment</button>
-                        </form>
 
                     </div>
                 </div>
@@ -154,4 +97,7 @@
 
 
     </main>
+@endsection
+@section('script')
+    <script src="{{ asset('js/share.js') }}"></script>
 @endsection

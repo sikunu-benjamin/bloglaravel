@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,13 +18,10 @@
 </head>
 
 <body>
-
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
     <div class="container">
-
-        <div class="navbar-left">
+        <div class="navbar-left mr-4">
             <button class="navbar-toggler" type="button">&#9776;</button>
             <a class="navbar-brand" href="{{ route('welcome') }}">
                 <img class="logo-dark" src="{{ asset('img/logo-dark.png') }}" alt="logo">
@@ -33,32 +30,47 @@
         </div>
 
         <section class="navbar-mobile">
-            <span class="navbar-divider d-mobile-none"></span>
-            <ul class="nav nav-navbar">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Blog <span class="arrow"></span></a>
-                    <nav class="nav">
-                        <a class="nav-link" href="../blog/classic.html">Classic</a>
-                        <a class="nav-link" href="../blog/grid.html">Grid</a>
-                        <a class="nav-link" href="../blog/list.html">List</a>
-                        <a class="nav-link active" href="../blog/sidebar.html">Sidebar</a>
-                        <div class="nav-divider"></div>
-                        <a class="nav-link" href="../blog/post-1.html">Post 1</a>
-                        <a class="nav-link" href="../blog/post-2.html">Post 2</a>
-                    </nav>
-                </li>
+            <nav class="nav nav-navbar nav-text-normal mr-auto">
+                <a class="nav-link @if(request()->routeIs('history')) active disabled @endif" href="#">@lang('text-front.history')</a>
+                <a class="nav-link @if(request()->routeIs('service')) active disabled @endif" href="#">Services</a>
+                <a class="nav-link @if(request()->routeIs('extension')) active disabled @endif" href="#">Extensions</a>
+                <a class="nav-link @if(request()->routeIs('blog')) active disabled @endif" href="{{ route('blog') }}">Blog</a>
+                <a class="nav-link @if(request()->routeIs('about')) active disabled @endif" href="{{ route('about') }}">@lang('text-front.about')</a>
+            </nav>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About <span class="arrow"></span></a>
-                </li>
-            </ul>
+            <div class="d-flex align-items-center">
+                @guest
+                        <a class="btn btn-xs btn-success ml-lg-5 mr-2" href="{{ route('login') }}">{{ __('text-front.login-register.login') }}</a>
+                    @if(Route::has('register'))
+                        <a class="btn btn-xs btn-outline-secondary text-dark" href="{{ route('register') }}">{{ __('text-front.login-register.register') }}</a>
+                    @endif
+                @else
+                        <a id="navbarDropdown" class="nav-link text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <img width="30px" height="30px" style="border-radius: 50%" src="{{ asset(Gravatar::src(Auth::user()->email)) }}" alt="avatar"><span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
+                                My profile
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                @endguest
+
+                <a class="ml-2 text-lighter" href="#" data-toggle="offcanvas" data-target="#offcanvas-search"><i class="ti-search"></i></a>
+            </div>
         </section>
-
-        <a class="btn btn-xs btn-round btn-success" href="{{ route('login') }}">Login</a>
-        <a class="btn btn-xs btn-round btn-outline-success ml-1" href="{{ route('register') }}">Register</a>
-
     </div>
-</nav><!-- /.navbar -->
+</nav>
+<!-- Navbar -->
 
 @yield('header')
 <!-- Main Content -->
@@ -71,7 +83,7 @@
         <div class="row gap-y align-items-center">
 
             <div class="col-6 col-lg-3">
-                <a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-dark.png') }}" alt="logo"></a>
+                <a href="{{ route('blog') }}"><img src="{{ asset('img/logo-dark.png') }}" alt="logo"></a>
             </div>
 
             <div class="col-6 col-lg-3 text-right order-lg-last">
@@ -98,6 +110,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/page.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
-
+@yield('script')
 </body>
 </html>
